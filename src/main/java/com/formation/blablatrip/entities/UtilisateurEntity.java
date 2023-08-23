@@ -43,4 +43,7 @@ public class UtilisateurEntity {
 
     @OneToMany(mappedBy = "utilisateur")
     private Collection<AvisEntity> aviss;
+
+    @OneToMany(mappedBy = "utilisateur")
+    private Collection<ReservationEntity> reservations;
 }

@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 import java.time.LocalDateTime;
+import java.util.Collection;
 
 @Data
 @Entity
@@ -19,4 +20,7 @@ public class PanierEntity {
 
     @OneToOne(optional = false, mappedBy = "panier")
     private UtilisateurEntity utilisateur;
+
+    @OneToMany(mappedBy = "panier")
+    private Collection<ItemPanierEntity> itemPaniers;
 }

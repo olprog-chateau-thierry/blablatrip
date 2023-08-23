@@ -29,4 +29,13 @@ public class VoyageEntity {
 
     @OneToMany(mappedBy = "voyage")
     private Collection<AvisEntity> aviss;
+
+    @OneToMany(mappedBy = "voyage")
+    private Collection<ItemPanierEntity> itemPaniers;
+
+    @OneToMany(mappedBy = "voyage")
+    private Collection<ReservationEntity> reservations;
+
+    @ManyToOne(optional = false)
+    private DestinationEntity destination;
 }

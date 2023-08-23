@@ -20,6 +20,7 @@ public class BlablatripApplication {
 		log.info("Bonjour {}", "sam");
 	}
 
+	/*
 	@Bean
 	public void testDestinationService() {
 		DestinationEntity destination = new DestinationEntity();
@@ -36,4 +37,5 @@ public class BlablatripApplication {
 			log.error("DestinationService save : {}", e.getMessage());
 		}
 	}
+	*/
 }

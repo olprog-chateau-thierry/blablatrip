@@ -4,6 +4,9 @@ import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+import java.util.Collection;
 
 @Data
 @Entity
@@ -26,4 +29,8 @@ public class DestinationEntity {
     private String ville;
 
     private Double prixBase;
+
+    @ToString.Exclude
+    @OneToMany(mappedBy = "destination")
+    private Collection<VoyageEntity> voyages;
 }
