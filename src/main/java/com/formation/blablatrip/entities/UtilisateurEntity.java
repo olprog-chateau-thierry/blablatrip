@@ -2,6 +2,9 @@ package com.formation.blablatrip.entities;
 
 import com.formation.blablatrip.enums.UtilisateurTypeEnum;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.Pattern;
+import jakarta.validation.constraints.Size;
 import lombok.Data;
 
 import java.time.LocalDateTime;
@@ -17,18 +20,24 @@ public class UtilisateurEntity {
     private Long id;
 
     @Column(nullable = false, length = 100)
+    @Pattern(regexp = "^[\\p{L}\\-\\s]{2,100}$")
     private String nom;
 
     @Column(nullable = false, length = 100)
+    @Pattern(regexp = "^[\\p{L}\\-\\s]{2,100}$")
     private String prenom;
 
     @Column(nullable = false, length = 200)
+    @Email
+    @Size(min = 8, max = 200)
     private String email;
 
     @Column(nullable = false, length = 100)
+    @Size(min = 8, max = 64)
     private String mdp;
 
     @Transient
+    @Size(min = 8, max = 64)
     private String verifMdp;
 
     @Enumerated(EnumType.STRING)

@@ -8,24 +8,29 @@
 		<div>
 			<input type="text" data-th-field="*{nom}">
 		</div>
+		<span data-th-if="${#fields.hasErrors('nom')}" data-th-errors="*{nom}"></span>
 	</div>
 	<div class="row">
 		<label data-th-for="prenom">Prénom</label>
 		<div>
 			<input type="text" data-th-field="*{prenom}">
 		</div>
+		<span data-th-if="${#fields.hasErrors('prenom')}" data-th-errors="*{prenom}"></span>
 	</div>
 	<div class="row">
 		<label data-th-for="email">Email</label>
 		<div><input type="text" data-th-field="*{email}"></div>
 	</div>
+	<span data-th-if="${#fields.hasErrors('email')}" data-th-errors="*{email}"></span>
 	<div class="row">
 		<label data-th-for="mdp">Mot de passe</label>
 		<div><input type="text" data-th-field="*{mdp}"></div>
+		<span data-th-if="${#fields.hasErrors('mdp')}" data-th-errors="*{mdp}"></span>
 	</div>
 	<div class="row">
 		<label data-th-for="verifMdp">Vérification Mot de passe</label>
 		<div><input type="text" data-th-field="*{verifMdp}"></div>
+		<span data-th-if="${#fields.hasErrors('verifMdp')}" data-th-errors="*{verifMdp}"></span>
 	</div>
 	<div class="row">
 		<label data-th-for="type">Type</label>
