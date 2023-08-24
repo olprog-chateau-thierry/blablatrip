@@ -6,6 +6,9 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
+
+<div data-th-if="${flashMessage}" data-th-text="${flashMessage}" id="alert"></div>
+
 <div data-th-replace="~{admin/fragments/header}"></div>
 
 <main data-th-if="${content}"

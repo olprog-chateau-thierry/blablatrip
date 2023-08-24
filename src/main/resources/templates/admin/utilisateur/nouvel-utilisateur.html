@@ -31,6 +31,7 @@
 		<label data-th-for="verifMdp">Vérification Mot de passe</label>
 		<div><input type="text" data-th-field="*{verifMdp}"></div>
 		<span data-th-if="${#fields.hasErrors('verifMdp')}" data-th-errors="*{verifMdp}"></span>
+		<span data-th-if="${errorSamePwd}" data-th-utext="'<br>' + ${errorSamePwd}"></span>
 	</div>
 	<div class="row">
 		<label data-th-for="type">Type</label>

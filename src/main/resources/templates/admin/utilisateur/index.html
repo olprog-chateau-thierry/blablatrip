@@ -4,7 +4,7 @@
 	<a data-th-href="@{/admin/utilisateur/nouvel-utilisateur}">Nouvel utilisateur</a>
 </button>
 
-<table border="1">
+<table>
 	<thead>
 	<tr>
 		<th>Nom</th>
@@ -35,12 +35,18 @@
 		<td data-th-text="${user.prenom}"></td>
 		<td data-th-text="${user.email}"></td>
 		<td data-th-text="${user.type}"></td>
-		<td data-th-text="${user.dateInscription}"></td>
-		<td data-th-text="${user.dateDesinscription}"></td>
+		<td data-th-text="${#temporals.format(user.dateInscription, 'dd/MM/yyyy HH:mm')}"></td>
+		<td data-th-text="${#temporals.format(user.dateDesinscription, 'dd/MM/yyyy HH:mm')}"></td>
 		<td>
-			<p>infos</p>
-			<p>éditer</p>
-			<p>supprimer</p>
+			<a data-th-href="@{|/admin/utilisateur/detail/${user.id}|}">
+				<img src="/images/detail.svg" alt="" height="48">
+			</a>
+			<a data-th-href="@{|/admin/utilisateur/edition/${user.id}|}">
+				<img src="/images/pencil.svg" alt="" height="48">
+			</a>
+			<a data-th-href="@{|/admin/utilisateur/delete/${user.id}|}">
+				<img src="/images/trash.svg" alt="" height="48">
+			</a>
 		</td>
 	</tr>
 	</tbody>

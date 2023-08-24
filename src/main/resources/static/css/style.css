@@ -1,0 +1,129 @@
+@import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-dark: #2F2D2E;
+    --color-blue: #5BC0EB;
+    --color-green: #C6EBBE;
+    --color-pink: #D72483;
+    --color-light: #F1ECCE;
+  }
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-dark: #F1ECCE;
+    --color-blue: #5BC0EB;
+    --color-green: #C6EBBE;
+    --color-pink: #D72483;
+    --color-light: #2F2D2E;
+  }
+}
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Poiret One", cursive;
+  background: transparent url("/images/bg.jpg") no-repeat fixed center center;
+  background-size: cover;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+header {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 150px;
+  color: var(--color-light);
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+header h1 {
+  font-size: 1.5rem;
+  padding: 20px 0;
+  text-align: center;
+}
+header nav ul {
+  padding: 0;
+}
+header nav ul li {
+  display: flex;
+  align-items: center;
+  font-size: 1.1rem;
+}
+header nav ul li:hover {
+  text-decoration: underline;
+  background-color: var(--color-pink);
+}
+header nav ul li a {
+  width: 100%;
+  display: block;
+  padding: 20px 10px;
+}
+
+main {
+  color: var(--color-light);
+  margin-left: 160px;
+  background: rgba(255, 255, 255, 0.25);
+  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+}
+main form > div.row span {
+  color: white;
+  background-color: var(--color-pink);
+}
+main table {
+  border-collapse: collapse;
+  width: 100%;
+}
+main table td, main table th {
+  border: 2px solid var(--color-pink);
+  padding: 7px;
+}
+main table tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+#alert {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  min-height: 60px;
+  background-color: rgba(255, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transform: translateY(-100%);
+  animation: alertShow 6s ease-in-out 200ms;
+}
+
+@keyframes alertShow {
+  0% {
+    transform: translateY(-100%);
+  }
+  5% {
+    transform: translateY(0);
+  }
+  95% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(-100%);
+  }
+}
+
+/*# sourceMappingURL=style.css.map */

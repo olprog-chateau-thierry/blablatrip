@@ -1,12 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap')
 
-\:root
-  --color-dark: #2F2D2E
-  --color-blue: #5BC0EB
-  --color-green: #C6EBBE
-  --color-pink: #D72483
-  --color-light: #F1ECCE
+@media (prefers-color-scheme: dark)
+    \:root
+      --color-dark: #2F2D2E
+      --color-blue: #5BC0EB
+      --color-green: #C6EBBE
+      --color-pink: #D72483
+      --color-light: #F1ECCE
 
+@media (prefers-color-scheme: light)
+    \:root
+        --color-dark: #F1ECCE
+        --color-blue: #5BC0EB
+        --color-green: #C6EBBE
+        --color-pink: #D72483
+        --color-light: #2F2D2E
 
 $width-header: 150px
 
@@ -19,9 +27,6 @@ body
   font-family: 'Poiret One', cursive
   background: transparent url("/images/bg.jpg") no-repeat fixed center center
   background-size: cover
-
-
-
 
 a
   color: inherit
@@ -74,3 +79,45 @@ main
   -webkit-backdrop-filter: blur( 10px )
   //border-radius: 10px
   border: 1px solid rgba( 255, 255, 255, 0.18 )
+
+  form > div.row span
+    color: white
+    background-color: var(--color-pink)
+
+  table
+    border-collapse: collapse
+    width: 100%
+    td, th
+      border: 2px solid var(--color-pink)
+      padding: 7px
+
+    tr
+      &:nth-child(even)
+        background-color: rgba(255,255,255,0.3)
+
+#alert
+  position: fixed
+  top: 0
+  left: 0
+  right: 0
+  z-index: 999
+  min-height: 60px
+  background-color: rgba(255, 0, 0, 0.8)
+  display: flex
+  justify-content: center
+  align-items: center
+  text-align: center
+  transform: translateY(-100%)
+  animation: alertShow 6s ease-in-out 200ms
+
+
+@keyframes alertShow
+  0%
+    transform: translateY(-100%)
+  5%
+    transform: translateY(0)
+  95%
+    transform: translateY(0)
+  100%
+    transform: translateY(-100%)
+

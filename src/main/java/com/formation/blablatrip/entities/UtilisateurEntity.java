@@ -27,7 +27,7 @@ public class UtilisateurEntity {
     @Pattern(regexp = "^[\\p{L}\\-\\s]{2,100}$")
     private String prenom;
 
-    @Column(nullable = false, length = 200)
+    @Column(nullable = false, length = 200, unique = true)
     @Email
     @Size(min = 8, max = 200)
     private String email;
