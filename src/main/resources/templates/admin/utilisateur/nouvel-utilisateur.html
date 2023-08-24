@@ -1,0 +1,44 @@
+<h1>Création d'un nouvel utilisateur</h1>
+
+<form data-th-action="@{/admin/utilisateur/nouvel-utilisateur}"
+      data-th-object="${user}"
+      method="post">
+	<div class="row">
+		<label data-th-for="nom">Nom</label>
+		<div>
+			<input type="text" data-th-field="*{nom}">
+		</div>
+	</div>
+	<div class="row">
+		<label data-th-for="prenom">Prénom</label>
+		<div>
+			<input type="text" data-th-field="*{prenom}">
+		</div>
+	</div>
+	<div class="row">
+		<label data-th-for="email">Email</label>
+		<div><input type="text" data-th-field="*{email}"></div>
+	</div>
+	<div class="row">
+		<label data-th-for="mdp">Mot de passe</label>
+		<div><input type="text" data-th-field="*{mdp}"></div>
+	</div>
+	<div class="row">
+		<label data-th-for="verifMdp">Vérification Mot de passe</label>
+		<div><input type="text" data-th-field="*{verifMdp}"></div>
+	</div>
+	<div class="row">
+		<label data-th-for="type">Type</label>
+		<div>
+			<select data-th-field="*{type}">
+				<option data-th-each="t : ${T(com.formation.blablatrip.enums.UtilisateurTypeEnum).values()}"
+				        data-th-value="${t}" data-th-text="${t}"
+				></option>
+			</select>
+		</div>
+	</div>
+	<div class="row">
+		<button type="submit">Valider</button>
+		<button type="reset">Effacer</button>
+	</div>
+</form>

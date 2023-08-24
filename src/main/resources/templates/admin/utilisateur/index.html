@@ -1,1 +1,47 @@
 <h1>Admin utilisateur</h1>
+
+<button>
+	<a data-th-href="@{/admin/utilisateur/nouvel-utilisateur}">Nouvel utilisateur</a>
+</button>
+
+<table border="1">
+	<thead>
+	<tr>
+		<th>Nom</th>
+		<th>Prénom</th>
+		<th>Email</th>
+		<th>Type</th>
+		<th>Date Inscription</th>
+		<th>Date Désinscription</th>
+		<th>Action</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr>
+		<td>Michaux</td>
+		<td>Samuel</td>
+		<td>samsam@sam.fr</td>
+		<td>ADMIN</td>
+		<td>24/08/2023</td>
+		<td></td>
+		<td>
+			<p>infos</p>
+			<p>éditer</p>
+			<p>supprimer</p>
+		</td>
+	</tr>
+	<tr data-th-each="user : ${users}">
+		<td data-th-text="${user.nom}"></td>
+		<td data-th-text="${user.prenom}"></td>
+		<td data-th-text="${user.email}"></td>
+		<td data-th-text="${user.type}"></td>
+		<td data-th-text="${user.dateInscription}"></td>
+		<td data-th-text="${user.dateDesinscription}"></td>
+		<td>
+			<p>infos</p>
+			<p>éditer</p>
+			<p>supprimer</p>
+		</td>
+	</tr>
+	</tbody>
+</table>
