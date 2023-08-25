@@ -1,0 +1,39 @@
+<h1 data-th-text="|Mise à jour de ${user.prenom} ${user.nom.toUpperCase()}|"></h1>
+
+<form data-th-action="@{|/admin/utilisateur/edition/${user.id}|}"
+      data-th-object="${user}"
+      method="post">
+	<div class="row">
+		<label data-th-for="nom">Nom</label>
+		<div>
+			<input type="text" data-th-field="*{nom}">
+		</div>
+		<span data-th-if="${#fields.hasErrors('nom')}" data-th-errors="*{nom}"></span>
+	</div>
+	<div class="row">
+		<label data-th-for="prenom">Prénom</label>
+		<div>
+			<input type="text" data-th-field="*{prenom}">
+		</div>
+		<span data-th-if="${#fields.hasErrors('prenom')}" data-th-errors="*{prenom}"></span>
+	</div>
+	<div class="row">
+		<label data-th-for="email">Email</label>
+		<div><input type="text" data-th-field="*{email}"></div>
+	</div>
+	<span data-th-if="${#fields.hasErrors('email')}" data-th-errors="*{email}"></span>
+	<div class="row">
+		<label data-th-for="type">Type</label>
+		<div>
+			<select data-th-field="*{type}">
+				<option data-th-each="t : ${T(com.formation.blablatrip.enums.UtilisateurTypeEnum).values()}"
+				        data-th-value="${t}" data-th-text="${t}"
+				></option>
+			</select>
+		</div>
+	</div>
+	<div class="row">
+		<button type="submit">Valider</button>
+		<button type="reset">Effacer</button>
+	</div>
+</form>

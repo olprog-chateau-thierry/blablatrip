@@ -5,6 +5,8 @@ import com.formation.blablatrip.repositories.UtilisateurRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 @Slf4j
 public class UtilisateurService {
@@ -33,5 +35,12 @@ public class UtilisateurService {
 
     public void deleteById(Long id) {
         utilisateurRepository.deleteById(id);
+    }
+
+    public Optional<UtilisateurEntity> findById(Long id) throws Exception {
+        if (id == null) {
+            throw new Exception("L'id est nul. je ne peux lancer la requête");
+        }
+        return utilisateurRepository.findById(id);
     }
 }
