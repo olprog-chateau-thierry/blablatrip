@@ -1,114 +1,159 @@
+@import "variables"
 @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap')
+@import "mixins"
+@import "header"
 
 @media (prefers-color-scheme: dark)
     \:root
-      --color-dark: #2F2D2E
-      --color-blue: #5BC0EB
-      --color-green: #C6EBBE
-      --color-pink: #D72483
-      --color-light: #F1ECCE
+      --color-dark: 47, 45, 46
+      --color-blue: 91, 192, 235
+      --color-green: 198, 235, 190
+      --color-pink: 215, 36, 131
+      --color-light: 247, 245, 253
 
+
+$color: rgb(247, 245, 253)
 @media (prefers-color-scheme: light)
     \:root
-        --color-dark: #F1ECCE
-        --color-blue: #5BC0EB
-        --color-green: #C6EBBE
-        --color-pink: #D72483
-        --color-light: #2F2D2E
+        --color-dark: 247, 245, 253
+        --color-blue: 91, 192, 235
+        --color-green: 198, 235, 190
+        --color-pink: 215, 36, 131
+        --color-light: 47, 45, 46
 
-$width-header: 150px
+
 
 *
   margin: 0
   padding: 0
   box-sizing: border-box
 
-body
-  font-family: 'Poiret One', cursive
-  background: transparent url("/images/bg.jpg") no-repeat fixed center center
-  background-size: cover
-
 a
   color: inherit
   text-decoration: none
 
-header
-  position: fixed
-  left: 0
-  top: 0
-  bottom: 0
-  width: $width-header
-  color: var(--color-light)
-  background: rgba( 255, 255, 255, 0.25 )
-  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )
-  backdrop-filter: blur( 10px )
-  -webkit-backdrop-filter: blur( 10px )
-  //border-radius: 10px
-  border: 1px solid rgba( 255, 255, 255, 0.18 )
 
-  h1
-    font-size: 1.5rem
-    padding: 20px 0
-    text-align: center
+button
+  height: 36px
+  padding: 0 10px
+  margin: 10px 0
+  border: none
+  outline: none
+  border-radius: 5px
+  background-color: rgb(var(--color-dark))
+  color: rgb(var(--color-light))
+  transition: transform 200ms ease-in-out, box-shadow 200ms ease-in-out
+  box-shadow: 0 0 20px rgba(var(--color-light), 0.4)
 
-  nav
-    ul
-      padding: 0
-      li
-        display: flex
-        align-items: center
-        font-size: 1.1rem
-
-
-        &:hover
-          text-decoration: underline
-          background-color: var(--color-pink)
-
-        a
-          width: 100%
-          display: block
-          padding: 20px 10px
-
-
-main
-  color: var(--color-light)
-  margin-left: calc($width-header + 10px)
-  background: rgba( 255, 255, 255, 0.25 )
-  box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 )
-  backdrop-filter: blur( 10px )
-  -webkit-backdrop-filter: blur( 10px )
-  //border-radius: 10px
-  border: 1px solid rgba( 255, 255, 255, 0.18 )
-
-  form > div.row span
-    color: white
-    background-color: var(--color-pink)
-
-  table
-    border-collapse: collapse
+  a
+    display: flex
+    justify-content: center
+    align-items: center
     width: 100%
-    td, th
-      border: 2px solid var(--color-pink)
-      padding: 7px
+    height: 100%
 
-    tr
-      &:nth-child(even)
-        background-color: rgba(255,255,255,0.3)
+  &:hover
+    transform: scale(0.99)
+    box-shadow: 0 0 12px rgba(var(--color-light), 0.5)
 
-#alert
-  position: fixed
-  top: 0
-  left: 0
-  right: 0
-  z-index: 999
-  min-height: 60px
-  background-color: rgba(255, 0, 0, 0.8)
-  display: flex
-  justify-content: center
-  align-items: center
-  text-align: center
-  transform: translateY(-100%)
-  animation: alertShow 6s ease-in-out 200ms
+
+body
+  font-family: 'Poiret One', cursive
+  //background: transparent url("/images/bg.jpg") no-repeat fixed center center
+  //background-size: cover
+
+  #alert
+    position: fixed
+    top: 0
+    left: 0
+    right: 0
+    z-index: 999
+    min-height: 60px
+    background-color: rgba(255, 0, 0, 0.8)
+    display: flex
+    justify-content: center
+    align-items: center
+    text-align: center
+    transform: translateY(-100%)
+    animation: alertShow 6s ease-in-out 200ms
+
+  div.bg
+    position: fixed
+    inset: 0
+    z-index: -1
+    img
+      width: 100%
+      height: 100%
+      object-fit: cover
+      object-position: center
+    @media (prefers-color-scheme: light)
+      img
+        filter: brightness(300%)
+    @media (prefers-color-scheme: dark)
+      img
+        filter: brightness(100%)
+
+  main
+    h1
+      text-align: center
+      margin: 20px 0
+
+    margin-left: calc($width-header + 10px)
+    @include glassmorphism
+
+    form
+      display: flex
+      justify-content: center
+      align-items: center
+      flex-wrap: wrap
+      margin: auto
+
+      & > div.row
+        min-width: 55%
+        max-width: 100%
+        display: flex
+        justify-content: center
+        align-items: center
+        flex-wrap: wrap
+        margin: 5px
+        padding: 5px
+        width: auto
+
+        button
+          margin: 0 10px
+
+        &:nth-child(even)
+          @include glassmorphism
+
+        label
+          min-width: 200px
+          max-width: 500px
+          width: 50%
+
+        & > div
+          min-width: 200px
+          max-width: 500px
+          width: 50%
+
+          input, textarea, select
+            width: 100%
+            height: 30px
+
+      & span
+        background-color: var(--color-pink)
+
+    table
+      border-collapse: collapse
+      width: 100%
+      td, th
+        border: 2px solid rgb(var(--color-pink))
+        padding: 7px
+
+      tr
+        &:nth-child(even)
+          background-color: rgba(255,255,255,0.3)
+
+
 
 
 @keyframes alertShow

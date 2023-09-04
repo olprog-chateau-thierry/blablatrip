@@ -1,51 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Poiret+One&display=swap");
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-dark: #2F2D2E;
-    --color-blue: #5BC0EB;
-    --color-green: #C6EBBE;
-    --color-pink: #D72483;
-    --color-light: #F1ECCE;
-  }
-}
-@media (prefers-color-scheme: light) {
-  :root {
-    --color-dark: #F1ECCE;
-    --color-blue: #5BC0EB;
-    --color-green: #C6EBBE;
-    --color-pink: #D72483;
-    --color-light: #2F2D2E;
-  }
-}
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: "Poiret One", cursive;
-  background: transparent url("/images/bg.jpg") no-repeat fixed center center;
-  background-size: cover;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
 header {
   position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
   width: 150px;
-  color: var(--color-light);
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+  color: rgb(255, 255, 255);
+  background: rgba(var(--color-light), 0.25);
+  box-shadow: 0 8px 32px 0 rgba(var(--color-dark), 0.37);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(var(--color-light), 0.18);
 }
 header h1 {
   font-size: 1.5rem;
@@ -70,32 +35,63 @@ header nav ul li a {
   padding: 20px 10px;
 }
 
-main {
-  color: var(--color-light);
-  margin-left: 160px;
-  background: rgba(255, 255, 255, 0.25);
-  box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.18);
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-dark: 47, 45, 46;
+    --color-blue: 91, 192, 235;
+    --color-green: 198, 235, 190;
+    --color-pink: 215, 36, 131;
+    --color-light: 247, 245, 253;
+  }
 }
-main form > div.row span {
-  color: white;
-  background-color: var(--color-pink);
+@media (prefers-color-scheme: light) {
+  :root {
+    --color-dark: 247, 245, 253;
+    --color-blue: 91, 192, 235;
+    --color-green: 198, 235, 190;
+    --color-pink: 215, 36, 131;
+    --color-light: 47, 45, 46;
+  }
 }
-main table {
-  border-collapse: collapse;
-  width: 100%;
-}
-main table td, main table th {
-  border: 2px solid var(--color-pink);
-  padding: 7px;
-}
-main table tr:nth-child(even) {
-  background-color: rgba(255, 255, 255, 0.3);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-#alert {
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  height: 36px;
+  padding: 0 10px;
+  margin: 10px 0;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+  background-color: rgb(var(--color-dark));
+  color: rgb(var(--color-light));
+  transition: transform 200ms ease-in-out, box-shadow 200ms ease-in-out;
+  box-shadow: 0 0 20px rgba(var(--color-light), 0.4);
+}
+button a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+}
+button:hover {
+  transform: scale(0.99);
+  box-shadow: 0 0 12px rgba(var(--color-light), 0.5);
+}
+
+body {
+  font-family: "Poiret One", cursive;
+}
+body #alert {
   position: fixed;
   top: 0;
   left: 0;
@@ -109,6 +105,97 @@ main table tr:nth-child(even) {
   text-align: center;
   transform: translateY(-100%);
   animation: alertShow 6s ease-in-out 200ms;
+}
+body div.bg {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+}
+body div.bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+@media (prefers-color-scheme: light) {
+  body div.bg img {
+    filter: brightness(300%);
+  }
+}
+@media (prefers-color-scheme: dark) {
+  body div.bg img {
+    filter: brightness(100%);
+  }
+}
+body main {
+  margin-left: 160px;
+  color: rgb(255, 255, 255);
+  background: rgba(var(--color-light), 0.25);
+  box-shadow: 0 8px 32px 0 rgba(var(--color-dark), 0.37);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(var(--color-light), 0.18);
+}
+body main h1 {
+  text-align: center;
+  margin: 20px 0;
+}
+body main form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: auto;
+}
+body main form > div.row {
+  min-width: 55%;
+  max-width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  margin: 5px;
+  padding: 5px;
+  width: auto;
+}
+body main form > div.row button {
+  margin: 0 10px;
+}
+body main form > div.row:nth-child(even) {
+  color: rgb(255, 255, 255);
+  background: rgba(var(--color-light), 0.25);
+  box-shadow: 0 8px 32px 0 rgba(var(--color-dark), 0.37);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(var(--color-light), 0.18);
+}
+body main form > div.row label {
+  min-width: 200px;
+  max-width: 500px;
+  width: 50%;
+}
+body main form > div.row > div {
+  min-width: 200px;
+  max-width: 500px;
+  width: 50%;
+}
+body main form > div.row > div input, body main form > div.row > div textarea, body main form > div.row > div select {
+  width: 100%;
+  height: 30px;
+}
+body main form span {
+  background-color: var(--color-pink);
+}
+body main table {
+  border-collapse: collapse;
+  width: 100%;
+}
+body main table td, body main table th {
+  border: 2px solid rgb(var(--color-pink));
+  padding: 7px;
+}
+body main table tr:nth-child(even) {
+  background-color: rgba(255, 255, 255, 0.3);
 }
 
 @keyframes alertShow {
