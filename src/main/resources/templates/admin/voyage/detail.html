@@ -1,0 +1,27 @@
+<h1 data-th-text="${voyage.dateDepart}"></h1>
+
+<div>
+	<p>Date de Depart : </p>
+	<p data-th-text="${voyage.dateDepart}"></p>
+</div>
+<div>
+	<p>Date de Retour : </p>
+	<p data-th-text="${voyage.dateRetour}"></p>
+</div>
+<div>
+	<p>Prix : </p>
+	<p data-th-text="${voyage.prix}"></p>
+</div>
+<div>
+	<p>Places Disponibles : </p>
+	<p data-th-text="${voyage.placesDisponibles}"></p>
+</div>
+<div>
+	<p>Destination : </p>
+	<div>
+		<p data-th-text="|nom : ${voyage.destination.nom}|"></p>
+		<p data-th-text="|Pays : ${voyage.destination.pays}|"></p>
+		<p data-th-text="|Ville : ${voyage.destination.ville}|"></p>
+		<p data-th-text="|Prix de base : ${voyage.destination.prixBase}|"></p>
+	</div>
+</div>

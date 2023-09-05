@@ -1,0 +1,40 @@
+<h1>Destination</h1>
+
+<h1>Admin utilisateur</h1>
+
+<button>
+	<a data-th-href="@{/admin/destination/nouvelle-destination}">Nouvelle destination</a>
+</button>
+
+<table>
+	<thead>
+	<tr>
+		<th>Nom</th>
+		<th>Description</th>
+		<th>Pays</th>
+		<th>Ville</th>
+		<th>Prix de Base</th>
+		<th>Actions</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr data-th-each="dest : ${destinations}">
+		<td data-th-text="${dest.nom}"></td>
+		<td data-th-text="${dest.description}"></td>
+		<td data-th-text="${dest.pays}"></td>
+		<td data-th-text="${dest.ville}"></td>
+		<td data-th-text="${dest.prixBase}"></td>
+		<td>
+			<a data-th-href="@{|/admin/destination/detail/${dest.id}|}">
+				<img src="/images/detail.svg" alt="" height="48">
+			</a>
+			<a data-th-href="@{|/admin/destination/edition/${dest.id}|}">
+				<img src="/images/pencil.svg" alt="" height="48">
+			</a>
+			<a data-th-href="@{|/admin/destination/delete/${dest.id}|}">
+				<img src="/images/trash.svg" alt="" height="48">
+			</a>
+		</td>
+	</tr>
+	</tbody>
+</table>

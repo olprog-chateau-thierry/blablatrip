@@ -1,0 +1,40 @@
+<h1>Voyage</h1>
+
+<button>
+	<a data-th-href="@{/admin/voyage/nouveau-voyage}">Nouveau voyage</a>
+</button>
+
+<table>
+	<thead>
+	<tr>
+		<th>Date de Depart</th>
+		<th>Date de Retour</th>
+		<th>Prix</th>
+		<th>Places Disponibles</th>
+		<th>Destination</th>
+		<th>Actions</th>
+	</tr>
+	</thead>
+	<tbody>
+	<tr data-th-each="voyage : ${voyages}">
+		<td data-th-text="${voyage.dateDepart}"></td>
+		<td data-th-text="${voyage.dateRetour}"></td>
+		<td data-th-text="${voyage.prix}"></td>
+		<td data-th-text="${voyage.placesDisponibles}"></td>
+		<td>
+			<a data-th-href="@{|/admin/destination/detail/${voyage.destination.id}|}" data-th-text="${voyage.destination.nom}"></a>
+		</td>
+		<td>
+			<a data-th-href="@{|/admin/voyage/detail/${voyage.id}|}">
+				<img src="/images/detail.svg" alt="" height="48">
+			</a>
+			<a data-th-href="@{|/admin/voyage/edition/${voyage.id}|}">
+				<img src="/images/pencil.svg" alt="" height="48">
+			</a>
+			<a data-th-href="@{|/admin/voyage/delete/${voyage.id}|}">
+				<img src="/images/trash.svg" alt="" height="48">
+			</a>
+		</td>
+	</tr>
+	</tbody>
+</table>

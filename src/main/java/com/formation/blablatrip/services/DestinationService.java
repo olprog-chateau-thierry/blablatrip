@@ -5,6 +5,8 @@ import com.formation.blablatrip.repositories.DestinationRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class DestinationService {
 
@@ -25,4 +27,7 @@ public class DestinationService {
     public Iterable<DestinationEntity> findAll() {
         return destinationRepository.findAll();
     }
+
+    public void deleteById(Long id) { destinationRepository.deleteById(id);}
+    public Optional<DestinationEntity> findById(Long id) { return destinationRepository.findById(id);}
 }

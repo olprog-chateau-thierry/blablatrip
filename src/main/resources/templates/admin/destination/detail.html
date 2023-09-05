@@ -1,0 +1,49 @@
+<h1 data-th-text="${dest.nom}"></h1>
+
+<div>
+	<p>Id : </p>
+	<p data-th-text="${dest.id}"></p>
+</div>
+<div>
+	<p>Nom : </p>
+	<p data-th-text="${dest.nom}"></p>
+</div>
+<div>
+	<p>Description : </p>
+	<p data-th-text="${dest.description}"></p>
+</div>
+<div>
+	<p>Pays : </p>
+	<p data-th-text="${dest.pays}"></p>
+</div>
+<div>
+	<p>Ville : </p>
+	<p data-th-text="${dest.ville}"></p>
+</div>
+<div>
+	<p>Prix de Base : </p>
+	<p data-th-text="${dest.prixBase}"></p>
+</div>
+<div>
+	<p>Voyages : </p>
+	<table>
+		<thead>
+		<tr>
+			<th>Date Depart</th>
+			<th>Date Retour</th>
+			<th>Prix</th>
+			<th>Places Disponibles</th>
+			<th>Actions</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr data-th-each="v : ${dest.voyages}">
+			<td data-th-text="${v.dateDepart}"></td>
+			<td data-th-text="${v.dateRetour}"></td>
+			<td data-th-text="${v.prix}"></td>
+			<td data-th-text="${v.placesDisponibles}"></td>
+			<td></td>
+		</tr>
+		</tbody>
+	</table>
+</div>

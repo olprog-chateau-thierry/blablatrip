@@ -1,0 +1,46 @@
+<h1>Edition d'une destination</h1>
+
+<form data-th-action="@{|/admin/destination/edition/${dest.id}|}"
+      data-th-object="${dest}"
+      method="post">
+	<div class="row">
+		<label data-th-for="nom">Nom</label>
+		<div>
+			<input type="text" data-th-field="*{nom}">
+		</div>
+		<span data-th-if="${#fields.hasErrors('nom')}" data-th-errors="*{nom}"></span>
+	</div>
+	<div class="row">
+		<label data-th-for="description">Description</label>
+		<div><textarea data-th-field="*{description}"></textarea></div>
+	</div>
+	<span data-th-if="${#fields.hasErrors('description')}" data-th-errors="*{description}"></span>
+	<div class="row">
+		<label data-th-for="pays">Pays</label>
+		<div>
+			<select type="text" data-th-field="*{pays}">
+				<option value="" selected>Choisir un pays</option>
+				<option value="fr">France</option>
+				<option value="be">Belgique</option>
+				<option value="en">Angleterre</option>
+			</select>
+		</div>
+		<span data-th-if="${#fields.hasErrors('pays')}" data-th-errors="*{pays}"></span>
+	</div>
+	<div class="row">
+		<label data-th-for="ville">Ville</label>
+		<div><input type="text" data-th-field="*{ville}"></div>
+		<span data-th-if="${#fields.hasErrors('ville')}" data-th-errors="*{ville}"></span>
+	</div>
+	<div class="row">
+		<label data-th-for="prixBase">Prix de base</label>
+		<div>
+			<input type="number" step="0.01" data-th-field="*{prixBase}">
+		</div>
+		<span data-th-if="${#fields.hasErrors('prixBase')}" data-th-errors="*{prixBase}"></span>
+	</div>
+	<div class="row">
+		<button type="submit">Valider</button>
+		<button type="reset">Effacer</button>
+	</div>
+</form>

@@ -12,4 +12,5 @@ public class AdminController extends AdminBaseController{
         model.addAttribute("content", "accueil.html");
         return "admin/index";
     }
+
 }

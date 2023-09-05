@@ -1,0 +1,44 @@
+<h1>Création d'un nouveau voyage</h1>
+
+<form data-th-action="@{/admin/voyage/nouveau-voyage}"
+      data-th-object="${voyage}"
+      method="post">
+	<div class="row">
+		<label data-th-for="destination">Destination</label>
+		<div>
+			<select data-th-field="*{destination}">
+				<option value="" selected></option>
+				<option data-th-each="dest : ${destinations}" data-th-value="${dest.id}" data-th-text="${dest.nom}"></option>
+			</select>
+		</div>
+		<span data-th-if="${#fields.hasErrors('destination')}" data-th-errors="*{destination}"></span>
+	</div>
+	<div class="row">
+		<label data-th-for="dateDepart">Date de Départ</label>
+		<div>
+			<input type="datetime-local" data-th-field="*{dateDepart}">
+		</div>
+		<span data-th-if="${#fields.hasErrors('dateDepart')}" data-th-errors="*{dateDepart}"></span>
+	</div>
+	<div class="row">
+		<label data-th-for="dateRetour">Date de Retour</label>
+		<div><input type="datetime-local" data-th-field="*{dateRetour}"></div>
+	</div>
+	<span data-th-if="${#fields.hasErrors('dateRetour')}" data-th-errors="*{dateRetour}"></span>
+	<div class="row">
+		<label data-th-for="prix">Prix</label>
+		<div>
+			<input type="number" min="0.01" step="0.01" data-th-field="*{prix}">
+		</div>
+		<span data-th-if="${#fields.hasErrors('prix')}" data-th-errors="*{prix}"></span>
+	</div>
+	<div class="row">
+		<label data-th-for="placesDisponibles">Places disponibles</label>
+		<div><input type="number" step="1" min="1" data-th-field="*{placesDisponibles}"></div>
+		<span data-th-if="${#fields.hasErrors('placesDisponibles')}" data-th-errors="*{placesDisponibles}"></span>
+	</div>
+	<div class="row">
+		<button type="submit">Valider</button>
+		<button type="reset">Effacer</button>
+	</div>
+</form>

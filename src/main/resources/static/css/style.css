@@ -181,7 +181,15 @@ body main form > div.row > div {
 }
 body main form > div.row > div input, body main form > div.row > div textarea, body main form > div.row > div select {
   width: 100%;
+}
+body main form > div.row > div input, body main form > div.row > div select {
   height: 30px;
+}
+body main form > div.row > div textarea {
+  height: 100px;
+  max-height: 200px;
+  min-height: 50px;
+  resize: vertical;
 }
 body main form span {
   background-color: var(--color-pink);
