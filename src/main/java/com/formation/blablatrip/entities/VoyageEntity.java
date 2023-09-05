@@ -49,4 +49,7 @@ public class VoyageEntity {
 
     @ManyToOne(optional = false)
     private DestinationEntity destination;
+
+    @OneToMany(mappedBy = "voyage")
+    private Collection<ImageEntity> imageList;
 }

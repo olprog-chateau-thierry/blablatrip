@@ -1,32 +1,42 @@
 package com.formation.blablatrip.controllers.admin;
 
+import com.formation.blablatrip.entities.ImageEntity;
 import com.formation.blablatrip.entities.VoyageEntity;
 import com.formation.blablatrip.services.DestinationService;
+import com.formation.blablatrip.services.ImageService;
 import com.formation.blablatrip.services.VoyageService;
 import jakarta.servlet.http.HttpSession;
 import jakarta.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.File;
+import java.io.IOException;
+import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Controller
 @Slf4j
 public class AdminVoyageController extends AdminBaseController {
 
+    @Value("${project.root}")
+    private String projectRoot;
+
     private final VoyageService voyageService;
     private final DestinationService destinationService;
+    private final ImageService imageService;
 
-    public AdminVoyageController(VoyageService voyageService, DestinationService destinationService) {
+    public AdminVoyageController(VoyageService voyageService, DestinationService destinationService, ImageService imageService) {
         this.voyageService = voyageService;
         this.destinationService = destinationService;
+        this.imageService = imageService;
     }
 
     @GetMapping("/voyage")
@@ -49,9 +59,19 @@ public class AdminVoyageController extends AdminBaseController {
             Model model,
             @Valid @ModelAttribute(name = "voyage") VoyageEntity voyage,
             BindingResult binding,
+            @RequestParam(name = "images") List<MultipartFile> files,
             RedirectAttributes redirectAttributes
     ) {
-        if (binding.hasErrors()) {
+
+        files = files
+                .stream()
+                .filter(i -> !Objects.equals(i.getContentType(), "application/octet-stream"))
+                .toList();
+
+        if (binding.hasErrors() || files.isEmpty()) {
+            if (files.isEmpty()) {
+                model.addAttribute("imageError", "il faut au minimum 1 image");
+            }
             model.addAttribute("destinations", destinationService.findAll());
             model.addAttribute("content", "voyage/nouveauVoyage.html");
             return "admin/index";
@@ -59,6 +79,22 @@ public class AdminVoyageController extends AdminBaseController {
 
         try {
             voyageService.save(voyage);
+            files
+                    .forEach(f -> {
+                        Optional<String> extension = Optional.ofNullable(f.getOriginalFilename())
+                                .filter(ff -> ff.contains("."))
+                                .map(ff -> ff.substring(ff.lastIndexOf(".") + 1));
+                        ImageEntity image = new ImageEntity();
+                        image.setVoyage(voyage);
+                        image.generateId(extension.get());
+                        File file = new File(projectRoot + "/src/main/resources/static/photos/" + image.getLink());
+                        try {
+                            f.transferTo(file);
+                            imageService.save(image);
+                        } catch (IOException e) {
+                            log.error("{}", e.getMessage());
+                        }
+                    });
         } catch (Exception e) {
             model.addAttribute("flashMessage", e.getMessage());
             log.error("{}", e.getMessage());

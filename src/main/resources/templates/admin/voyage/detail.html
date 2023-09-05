@@ -25,3 +25,11 @@
 		<p data-th-text="|Prix de base : ${voyage.destination.prixBase}|"></p>
 	</div>
 </div>
+<div>
+	<p>Images : </p>
+	<div>
+		<img data-th-src="|/photos/${img.link}|"
+		     width="auto" height="200"
+		     data-th-each="img : ${voyage.imageList}">
+	</div>
+</div>
